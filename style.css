@@ -30,6 +30,7 @@ img {
   z-index: 100;
   background-color: #4b2e2e;
   padding: 1rem;
+  opacity: 97%;
 }
 
 .nav-container {
@@ -137,12 +138,19 @@ img {
 
 .btn {
   display: inline-block;
-  background-color: #d9a066;
+  background-color: transparent;
+  border:  2px solid #d9a066;
   color: #4b2e2e;
   padding: 0.6rem 1.2rem;
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover{
+  background-color: #d9a066;
+  box-shadow: 0 0 25px #d9a066; 
 }
 
 /*==menu==*/
@@ -181,6 +189,12 @@ img {
   flex-direction: column;
 }
 
+.card img {
+  width: 100%;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+}
+
 .card h3 {
   margin: 0.6rem 0 0.3rem;
   color: #4b2e2e;
@@ -204,11 +218,25 @@ img {
   padding: 2rem 1rem;
 }
 
-.tentang-flex {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
+.tentang-flex {                                                                                                                                          
+  flex-direction: row;                                                                                                                                   
+  align-items: center;                                                                                                                                   
+  justify-content: center;                                                                                                                               
+  gap: 3.5rem;                                                                                                  
+  max-width: 850px;                                                                                       
+  margin: 0 auto;                                                                                                                                        
+}                                                                                                                                                        
+           
+
+.tentang-flex img {                                                                                                                                        
+  width: 180px;                                                                                                                                            
+  max-width: 100%;                                                                                                                                         
+  aspect-ratio: 1 / 1;                                                                                                                                     
+  object-fit: cover;                                                                                                                                       
+  border-radius: 50%;
+  margin: 0 auto;                                                                                            
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);                                                                            
+}    
 
 .tentang-text p {
   font-size: 0.95rem;
