@@ -26,7 +26,7 @@
           <li><a href="#menu">Menu</a></li>
           <li><a href="#tentang">Tentang</a></li>
           <li><a href="#faq">FAQ</a></li>
-          <li><a href="#footer">Kontak</a></li>
+          <li><a href="#kontak">Kontak</a></li>
         </ul>
       </nav>
     </div>
@@ -41,7 +41,7 @@
     </div>
   </section>
 
-  <!--main conten-->
+  <!--main content-->
   <section class="menu" id="menu">
     <h2 class="section-title">Menu Favorit Kami</h2>
     <p>empat pilihan andalan kami</p>
@@ -50,28 +50,28 @@
       <div class="card">
         <img src="https://via.placeholder.com/300x200" alt="Kopi Hitam">
         <h3>Kopi Hitam</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex nulla magnam laborum magni! Accusamus eaque iure enim veniam. Minus nemo distinctio id numquam expedita necessitatibus quis iure aspernatur voluptates quidem!</p>
+        <p>Kopi robusta lokal yang diseduh tubruk. Pahit pas dan aromanya kuat yang cocok untuk memulai hari.</p>
         <span class="price">Rp 12.000</span>
       </div>
 
       <div class="card">
         <img src="https://via.placeholder.com/300x200" alt="Kopi Susu Gula Aren">
         <h3>Kopi Susu Gula Aren</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, voluptatum ut. Atque ducimus laborum sed eum consequatur dolorum eos eius, impedit recusandae. Incidunt illum quis magni repellendus modi perspiciatis adipisci.</p>
+        <p>Espresso, susu segar, dan gula aren asli dalam satu gelas. Manisnya tidak berlebihan.</p>
         <span class="price">Rp 18.000</span>
       </div>
 
       <div class="card">
         <img src="https://via.placeholder.com/300x200" alt="Cappuccino">
         <h3>Cappuccino</h3>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa consequatur beatae ut numquam esse. Dolorem, porro vero consequatur voluptatem, quos doloremque qui velit voluptates animi voluptatibus nisi. Pariatur, aut labore?</p>
+        <p>Espresso dengan susu panas dan lapisan foam tebal. Hangat, creamy, dan seimbang di setiap tegukan.</p>
         <span class="price">Rp 20.000</span>
       </div>
 
       <div class="card">
         <img src="https://via.placeholder.com/300x200" alt="Latte">
         <h3>Latte</h3>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus a doloremque quam illum praesentium quo iste, laborum hic aut beatae nam tenetur porro voluptatum adipisci in iure expedita non cum?</p>
+        <p>Espresso berpadu susu steam yang halus dengan foam tipis. Rasa kopinya ringan dan mudah dinikmati.</p>
         <span class="price">Rp 20.000</span>
       </div>
 
@@ -112,7 +112,7 @@
           <span class="faq-icon">+</span>
         </label>
         <div class="faq-answer">
-          <p>Bisa, kamu bisa hubungi kami lewat Instagram atau WhatsApp yang tertera di bagian footer.</p>
+          <p>Bisa, kamu bisa hubungi kami lewat Instagram atau WhatsApp yang tertera di bagian Kontak.</p>
         </div>
       </div>
 
@@ -129,6 +129,41 @@
 
     </div>
   </section>
+
+    <!-- ===== KONTAK & PESAN =====
+    Untuk saat ini hanya tampilan. Fungsi kirim/validasi form ditambahkan nanti dengan jQuery -->
+    <section class="kontak" id="kontak">
+      <div class="kontak-grid">
+
+        <div class="kontak-info">
+          <h2>Hubungi &amp; Pesan</h2>
+          <p>Isi formulir berikut, tim kami akan segera menghubungi Anda kembali.</p>
+          <ul class="kontak-detail">
+            <li><strong>Alamat:</strong> Jl. Jeruk, Jakarta Barat</li>
+            <li><strong>WhatsApp:</strong> 0822-3333-4444</li>
+            <li><strong>Jam Buka:</strong> Setiap hari, 08.00 &ndash; 21.00</li>
+          </ul>
+        </div>
+
+        <form class="kontak-form" id="form-kontak">
+          <div class="form-group">
+            <label for="nama">Nama</label>
+            <input type="text" id="nama" name="nama" placeholder="Nama lengkap Anda">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="nama@email.com">
+          </div>
+          <div class="form-group">
+            <label for="pesan">Pesan</label>
+            <textarea id="pesan" name="pesan" rows="4" placeholder="Tuliskan pesanan atau pertanyaan Anda"></textarea>
+          </div>
+          <!-- type="button" agar halaman tidak reload, akan diubah jadi submit saat jQuery ditambahkan -->
+          <button type="button" class="btn-kirim" id="btn-kirim">Kirim Pesan</button>
+        </form>
+
+      </div>
+    </section>
 
   <!--footer-->
   <footer class="footer" id="footer">

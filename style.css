@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
   line-height: 1.6;
@@ -172,6 +176,9 @@ img {
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   text-align: center;
   padding-bottom: 1rem;
+  /* buat harga nempel di bawah card */
+  display: flex;
+  flex-direction: column;
 }
 
 .card h3 {
@@ -186,6 +193,7 @@ img {
 }
 
 .price {
+  margin-top: auto;
   font-weight: bold;
   color: #a9662a;
 }
@@ -262,6 +270,96 @@ img {
 
 .faq-toggle:checked ~ .faq-question .faq-icon {
   transform: rotate(45deg);
+}
+
+/*==kontak==*/
+.kontak {
+  padding: 2rem 1rem;
+  background-color: #fff;
+}
+
+.kontak-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.kontak-info h2 {
+  color: #4b2e2e;
+  margin-bottom: 0.5rem;
+}
+
+.kontak-info p {
+  color: #555;
+  margin-bottom: 0.8rem;
+}
+
+.kontak-detail {
+  list-style: none;
+}
+
+.kontak-detail li {
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.kontak-form {
+  background-color: #f5e6d3;
+  border-radius: 10px;
+  padding: 1.2rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #4b2e2e;
+  margin-bottom: 0.3rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 0.9rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #d9c3a5;
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: 2px solid #d9a066;
+  border-color: #d9a066;
+}
+
+.btn-kirim {
+  width: 100%;
+  font: inherit;
+  font-weight: bold;
+  padding: 0.7rem 1rem;
+  border: none;
+  border-radius: 999px;
+  background-color: #4b2e2e;
+  color: #f5e6d3;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-kirim:hover {
+  background-color: #6b4327;
 }
 
 /*==footer==*/
@@ -345,10 +443,18 @@ img {
   }
 
   .menu-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .tentang {
     padding: 3rem 4rem;
+  }
+
+  .kontak {
+    padding: 3rem 4rem;
+  }
+
+  .kontak-grid {
+    gap: 4rem;
   }
 }
