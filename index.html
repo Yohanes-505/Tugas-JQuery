@@ -4,17 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kopi Nusantara - Kedai Kopi Rumahan</title>
+  <!--mengimport css yang berada di luar file lokal-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
+<body>
   <!--header-->
   <header class="header">
     <div class="nav-container">
       <h1 class="logo">Kopi Nusantara</h1>
-
       <input type="checkbox" id="nav-toggle" class="nav-toggle">
+
+      <!--Ini kalau tampilan mobile bakal muncul tombol garis 3-->
       <label for="nav-toggle" class="hamburger">
         <span></span>
         <span></span>
@@ -53,6 +55,8 @@
         <h3>Kopi Hitam</h3>
         <p>Kopi robusta lokal yang diseduh tubruk. Pahit pas dan aromanya kuat yang cocok untuk memulai hari.</p>
         <span class="price">Rp 12.000</span>
+        <!--Fitur Jquery untuk menyukai menu -->
+        <button class="btn-like"><i class="fa-solid fa-thumbs-up"></i> Suka (<span class="like-count">0</span>)</button>
       </div>
 
       <div class="card">
@@ -60,6 +64,7 @@
         <h3>Kopi Susu Gula Aren</h3>
         <p>Espresso, susu segar, dan gula aren asli dalam satu gelas. Manisnya tidak berlebihan.</p>
         <span class="price">Rp 18.000</span>
+        <button class="btn-like"><i class="fa-solid fa-thumbs-up"></i> Suka (<span class="like-count">0</span>)</button>
       </div>
 
       <div class="card">
@@ -67,6 +72,7 @@
         <h3>Cappuccino</h3>
         <p>Espresso dengan susu panas dan lapisan foam tebal. Hangat, creamy, dan seimbang di setiap tegukan.</p>
         <span class="price">Rp 20.000</span>
+        <button class="btn-like"><i class="fa-solid fa-thumbs-up"></i> Suka (<span class="like-count">0</span>)</button>
       </div>
 
       <div class="card">
@@ -74,6 +80,7 @@
         <h3>Latte</h3>
         <p>Espresso berpadu susu steam yang halus dengan foam tipis. Rasa kopinya ringan dan mudah dinikmati.</p>
         <span class="price">Rp 20.000</span>
+        <button class="btn-like"><i class="fa-solid fa-thumbs-up"></i> Suka (<span class="like-count">0</span>)</button>
       </div>
 
     </div>
@@ -95,97 +102,110 @@
     <h2 class="section-title">Pertanyaan yang Sering Diajukan</h2>
     <div class="faq-list">
 
+      <!--faq 1-->
       <div class="faq-item">
-        <input type="checkbox" id="faq1" class="faq-toggle">
-        <label for="faq1" class="faq-question">
+        <div class="faq-question">
           Apakah Kopi Nusantara buka setiap hari?
           <span class="faq-icon">+</span>
-        </label>
+        </div>
         <div class="faq-answer">
           <p>Ya, kami buka setiap hari mulai pukul 08.00 sampai 21.00 WIB.</p>
         </div>
       </div>
 
+      <!--faq 2-->
       <div class="faq-item">
-        <input type="checkbox" id="faq2" class="faq-toggle">
-        <label for="faq2" class="faq-question">
+        <div class="faq-question">
           Apakah bisa pesan lewat online?
           <span class="faq-icon">+</span>
-        </label>
+        </div>
         <div class="faq-answer">
           <p>Bisa, kamu bisa hubungi kami lewat Instagram atau WhatsApp yang tertera di bagian Kontak.</p>
         </div>
       </div>
 
+      <!--faq 3-->
       <div class="faq-item">
-        <input type="checkbox" id="faq3" class="faq-toggle">
-        <label for="faq3" class="faq-question">
+        <div class="faq-question">
           Apakah tersedia menu tanpa gula?
           <span class="faq-icon">+</span>
-        </label>
+        </div>
         <div class="faq-answer">
           <p>Tersedia, kamu bisa request level gula sesuai selera saat memesan.</p>
+        </div>
+      </div>
+
+      <!--faq 4-->
+      <div class="faq-item">
+        <div class="faq-question">
+          Apakah ada fasilitas WiFi dan stopkontak?
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Kami menyediakan WiFi gratis yang cepat dan banyak stopkontak, cocok untuk mengerjakan tugas atau work from cafe.</p>
         </div>
       </div>
 
     </div>
   </section>
 
-    <!-- ===== KONTAK & PESAN =====
-    Untuk saat ini hanya tampilan. Fungsi kirim/validasi form ditambahkan nanti dengan jQuery -->
-    <section class="kontak" id="kontak">
-      <div class="kontak-grid">
+  <!--kontak & pesan
+  Untuk saat ini hanya tampilan. Fungsi kirim/validasi form ditambahkan nanti dengan jQuery -->
+  <section class="kontak" id="kontak">
+    <div class="kontak-grid">
+      <div class="kontak-info">
+        <h2>Hubungi &amp; Pesan</h2>
+        <p>Isi formulir berikut, tim kami akan segera menghubungi Anda kembali.</p>
+        <ul class="kontak-detail">
+          <li><strong>Alamat:</strong> Jl. Jeruk, Jakarta Barat</li>
+          <li><strong>WhatsApp:</strong> 0857-7060-7933</li>
+          <li><strong>Jam Buka:</strong> Setiap hari, 08.00 &ndash; 21.00</li>
+        </ul>
 
-        <div class="kontak-info">
-          <h2>Hubungi &amp; Pesan</h2>
-          <p>Isi formulir berikut, tim kami akan segera menghubungi Anda kembali.</p>
-          <ul class="kontak-detail">
-            <li><strong>Alamat:</strong> Jl. Jeruk, Jakarta Barat</li>
-            <li><strong>WhatsApp:</strong> 0857-7060-7933</li>
-            <li><strong>Jam Buka:</strong> Setiap hari, 08.00 &ndash; 21.00</li>
-          </ul>
-
-          <div class="social-links">
-            <a href="https://wa.me/6285770607933" class="social-btn whatsapp" target="_blank">
-              <i class="fa-brands fa-whatsapp"></i>
-            </a>
-            <a href="https://www.instagram.com/kopinusantara.kopnus?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" class="social-btn instagram" target="_blank">
-              <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="https://www.facebook.com/kopinusantaraa/" class="social-btn facebook" target="_blank">
-              <i class="fa-brands fa-facebook-f"></i>
-            </a>
-            <a href="https://www.tiktok.com/@kedai_kosim?is_from_webapp=1&sender_device=pc" class="social-btn tiktok" target="_blank">
-              <i class="fa-brands fa-tiktok"></i>
-            </a>
-          </div>
+        <!--ini untuk logo whatsapp, instagram, facebook, tiktok, yang diimpor dari link css di atas-->
+        <div class="social-links">
+          <a href="https://wa.me/6285770607933" class="social-btn whatsapp" target="_blank">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+          <a href="https://www.instagram.com/kopinusantara.kopnus?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" class="social-btn instagram" target="_blank">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://www.facebook.com/kopinusantaraa/" class="social-btn facebook" target="_blank">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="https://www.tiktok.com/@kedai_kosim?is_from_webapp=1&sender_device=pc" class="social-btn tiktok" target="_blank">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
         </div>
-
-        <form class="kontak-form" id="form-kontak">
-          <div class="form-group">
-            <label for="nama">Nama</label>
-            <input type="text" id="nama" name="nama" placeholder="Nama lengkap Anda">
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="nama@email.com">
-          </div>
-          <div class="form-group">
-            <label for="pesan">Pesan</label>
-            <textarea id="pesan" name="pesan" rows="4" placeholder="Tuliskan pesanan atau pertanyaan Anda"></textarea>
-          </div>
-          <!-- type="button" agar halaman tidak reload, akan diubah jadi submit saat jQuery ditambahkan -->
-          <button type="button" class="btn-kirim" id="btn-kirim">Kirim Pesan</button>
-        </form>
-
       </div>
-    </section>
+
+      <form class="kontak-form" id="form-kontak">
+        <div class="form-group">
+          <label for="nama">Nama</label>
+          <input type="text" id="nama" name="nama" placeholder="Nama lengkap Anda">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="nama@email.com">
+        </div>
+        <div class="form-group">
+          <label for="pesan">Pesan</label>
+          <textarea id="pesan" name="pesan" rows="4" placeholder="Tuliskan pesanan atau pertanyaan Anda"></textarea>
+        </div>
+        <button type="button" class="btn-kirim" id="btn-kirim">Kirim Pesan</button>
+      </form>
+    </div>
+  </section>
 
   <!--footer-->
   <footer class="footer" id="footer">
     <p>&copy; 2026 Kopi Nusantara.</p>
-    <p>Jalan jalan</p>
+    <p>Jalan jalan dengan sepatu rodaku</p>
   </footer>
+
+  <!--ini buat menghubungkan jquery-->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="script.js"></script>
 
 </body>
 </html>
