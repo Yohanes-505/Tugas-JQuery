@@ -22,7 +22,32 @@ $(document).ready(function() {
         } else {
             counterSpan.text(currentCount - 1);
         }
+        perbaruiTerpopuler();
     });
+
+    // penanda card like terbanyak
+    function perbaruiTerpopuler() {
+        let likeTertinggi = 0;
+
+        //nilai like paling tinggi
+        $('.like-count').each(function() {
+            let jumlah = parseInt($(this).text());
+            if(jumlah > likeTertinggi) {
+                likeTertinggi = jumlah;
+            }
+        });
+        //bersihin badge
+        $('.card').removeClass('terpopuler');
+
+         if (likeTertinggi > 0) {
+        $('.like-count').each(function() {
+            if (parseInt($(this).text()) === likeTertinggi) {
+                $(this).closest('.card').addClass('terpopuler');
+            }
+        });
+    }
+
+    }
 
     let tombolAtas = $('#back-to-top');
 
@@ -148,3 +173,36 @@ $(document).ready(function() {
     $('.nav-list a').click(function() {
         $('#nav-toggle').prop('checked', false);
     });
+
+// animasi reveal ke sekumpulan elemen, muncul satu persatu
+function pasangAnimasi(selector, jedaAntarElemen) {
+    const elemenList = document.querySelectorAll(selector);
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                // cari urutan elemen di antara semua elemen sejenis
+                let index = Array.from(elemenList).indexOf(entry.target);
+                // jeda sesuai urutan, biar satu-satu
+                setTimeout(function() {
+                    entry.target.classList.add('tampil');
+                }, index * jedaAntarElemen);
+            } else {
+                entry.target.classList.remove('tampil');
+            }
+        });
+    }, { threshold: 0.2 });
+
+    elemenList.forEach(function(elemen) {
+        observer.observe(elemen);
+    });
+}
+
+// Tentang Kami
+pasangAnimasi('.tentang-flex', 0);
+
+// card menu
+pasangAnimasi('.card', 150);
+
+// FAQ
+pasangAnimasi('.faq-item', 120);

@@ -71,7 +71,7 @@ img {
   width: 100%;
   background-color: #f5e6d3;
   border-radius: 2px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
 /* ketika toogle hamburger diklik maka akan muncul navbarnya (khusus untuk mobile) */
@@ -233,6 +233,33 @@ body:has(#kontak:target) .nav-list a[href="#kontak"] {
   color: #a9662a;
 }
 
+/* badge menu terpopuler */
+.card {
+  position: relative;
+}
+
+.card.terpopuler{
+  border: 2px solid #d9a066;
+  box-shadow: 0 0 15px rgba(217, 160, 102, 0.6);
+}
+
+.badge-populer{
+  display: none;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background-color: #d9a066;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  z-index: 5;
+}
+
+.card.terpopuler .badge-populer{
+  display: inline-block;
+}
 /*==tentang==*/
 .tentang {
   background-color: #f5e6d3;
@@ -257,10 +284,34 @@ body:has(#kontak:target) .nav-list a[href="#kontak"] {
   border-radius: 50%;
   margin: 0 auto 1.5rem auto;
   flex-shrink: 0;
-}    
+}
+
+.tentang-flex {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.tentang-flex.tampil{
+  opacity: 1;
+  transform: translateY(0);
+}
 
 .tentang-text p {
   font-size: 0.95rem;
+}
+
+.card,
+.faq-item {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.card.tampil,
+.faq-item.tampil {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /*==faq==*/
