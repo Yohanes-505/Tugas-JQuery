@@ -43,6 +43,92 @@ $(document).ready(function() {
         });
     });
 
+        // ===== VALIDASI FORM KONTAK =====
+
+    // fungsi bantu: tampilkan pesan error di bawah input
+    function tampilkanError(input, pesan) {
+        input.addClass('input-error');
+        input.next('.error-msg').text(pesan);
+    }
+
+    // fungsi bantu: hapus pesan error
+    function hapusError(input) {
+        input.removeClass('input-error');
+        input.next('.error-msg').text('');
+    }
+
+    // error langsung hilang begitu pengguna mulai mengetik ulang
+    $('#form-kontak input, #form-kontak textarea').on('input', function() {
+        hapusError($(this));
+    });
+
+        $('#form-kontak').submit(function(event) {
+        event.preventDefault(); // cegah halaman reload
+
+        let nama  = $('#nama');
+        let email = $('#email');
+        let pesan = $('#pesan');
+
+        // .trim() membuang spasi di awal/akhir, supaya isian "   " tetap dianggap kosong
+        let isiNama  = nama.val().trim();
+        let isiEmail = email.val().trim();
+        let isiPesan = pesan.val().trim();
+
+        // pola email sederhana: teks@teks.teks
+        let polaEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        let valid = true;
+
+        // cek nama
+        if (isiNama === '') {
+            tampilkanError(nama, 'Nama wajib diisi.');
+            valid = false;
+        } else if (isiNama.length < 3) {
+            tampilkanError(nama, 'Nama minimal 3 huruf.');
+            valid = false;
+        } else {
+            hapusError(nama);
+        }
+
+        // cek email
+        if (isiEmail === '') {
+            tampilkanError(email, 'Email wajib diisi.');
+            valid = false;
+        } else if (!polaEmail.test(isiEmail)) {
+            tampilkanError(email, 'Format email belum benar, contoh: nama@email.com');
+            valid = false;
+        } else {
+            hapusError(email);
+        }
+
+        // cek pesan
+        if (isiPesan === '') {
+            tampilkanError(pesan, 'Pesan wajib diisi.');
+            valid = false;
+        } else if (isiPesan.length < 10) {
+            tampilkanError(pesan, 'Pesan minimal 10 karakter.');
+            valid = false;
+        } else {
+            hapusError(pesan);
+        }
+
+        // kalau ada yang salah, arahkan kursor ke kolom error pertama lalu berhenti
+        if (!valid) {
+            $('.input-error').first().focus();
+            return;
+        }
+
+        // kalau semua benar: tampilkan pesan sukses
+        $('#form-status')
+            .text('Terima kasih, ' + isiNama + '! Pesan kamu sudah terkirim.')
+            .slideDown(300)
+            .delay(4000)
+            .slideUp(300);
+
+        // kosongkan form
+        this.reset();
+    });
+
 });
 
 // judul, paragraf, dan tombol muncul bergantian saat halaman dibuka

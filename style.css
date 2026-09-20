@@ -618,3 +618,31 @@ body:has(#kontak:target) .nav-list a[href="#kontak"] {
   outline: 3px solid #d9a066;
   outline-offset: 3px;
 }
+
+/*==validasi form==*/
+.error-msg {
+  display: block;
+  min-height: 1.2em; 
+  font-size: 0.8rem;
+  color: #b3261e;
+  margin-top: 0.25rem;
+}
+
+/* ditambahkan jQuery ke kolom yang salah */
+.form-group input.input-error,
+.form-group textarea.input-error {
+  border-color: #b3261e;
+  background-color: #fff6f5;
+}
+
+.form-status {
+  display: none; 
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  background-color: #e6f4ea;
+  color: #1e5e34;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-align: center;
+}
