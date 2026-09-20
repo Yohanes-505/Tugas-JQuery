@@ -6,6 +6,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 4.4rem;
 }
 
 body {
@@ -24,13 +25,15 @@ img {
 /*===mobile===*/
 
 /*==header==*/
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background-color: #4b2e2e;
-  padding: 1rem;
-}
+.header {                                                                                                                                                            
+  position: sticky;                                                                                                                                                  
+  top: 0;                                                                                                                                                            
+  z-index: 100;                                                                                                                                                      
+  background-color: rgba(75, 46, 46, 0.95);                                                                          
+  backdrop-filter: blur(5px);                                                                                    
+  -webkit-backdrop-filter: blur(5px);                                                                                    
+  padding: 1rem;                                                                                                                                                     
+}   
 
 .nav-container {
   display: flex;
@@ -107,19 +110,34 @@ img {
 }
 
 .nav-list a {
+  display: inline-block;
   color: #f5e6d3;
   text-decoration: none;
   font-size: 0.95rem;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease;
+  outline: none;
 }
 
 .nav-list a:hover {
   color: #d9a066;
+  border-bottom-color: #d9a066;
+}
+
+body:has(#hero:target) .nav-list a[href="#hero"],
+body:has(#menu:target) .nav-list a[href="#menu"],
+body:has(#tentang:target) .nav-list a[href="#tentang"],
+body:has(#faq:target) .nav-list a[href="#faq"],
+body:has(#kontak:target) .nav-list a[href="#kontak"] {
+  color: #d9a066;
+  border-bottom-color: #d9a066;
 }
 
 /*==hero==*/
 .hero {
   background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-              url('https://via.placeholder.com/800x500') center/cover no-repeat;
+              url('images/Kedai Kopi Nusantara.jpeg') center/cover no-repeat;
   color: #fff;
   text-align: center;
   padding: 3rem 1rem;
@@ -137,12 +155,20 @@ img {
 
 .btn {
   display: inline-block;
-  background-color: #d9a066;
-  color: #4b2e2e;
+  background-color: transparent;
+  border:  2px solid #d9a066;
+  color: #ffffff;
   padding: 0.6rem 1.2rem;
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover{
+  background-color: #d9a066;
+  color: #4b2e2e;
+  box-shadow: 0 0 25px #d9a066; 
 }
 
 /*==menu==*/
@@ -181,6 +207,12 @@ img {
   flex-direction: column;
 }
 
+.card img {
+  width: 100%;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+}
+
 .card h3 {
   margin: 0.6rem 0 0.3rem;
   color: #4b2e2e;
@@ -207,8 +239,22 @@ img {
 .tentang-flex {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 100%;
 }
+
+.tentang-flex img {
+  width: 150px;
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 0 auto 1.5rem auto;
+  flex-shrink: 0;
+}    
 
 .tentang-text p {
   font-size: 0.95rem;
@@ -281,7 +327,7 @@ img {
 .kontak-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.5rem;
+  gap: 2rem;
   max-width: 1000px;
   margin: 0 auto;
 }
@@ -303,6 +349,49 @@ img {
 .kontak-detail li {
   margin-bottom: 0.4rem;
   font-size: 0.95rem;
+}
+
+/*==sosial media kontak==*/
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 1.2rem;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #4b2e2e;
+  color: #f5e6d3;
+  font-size: 1.25rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+  transform: translateY(-3px);
+  color: #ffffff;
+}
+
+.social-btn.whatsapp:hover {
+  background-color: #25d366;
+}
+
+.social-btn.instagram:hover {
+  background-color: #e1306c;
+}
+
+.social-btn.facebook:hover {
+  background-color: #1877f2;
+}
+
+.social-btn.tiktok:hover {
+  background-color: #000000;
 }
 
 .kontak-form {
@@ -407,9 +496,19 @@ img {
   .tentang-flex {
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    max-width: 85%;
+    margin: 0 auto;
   }
 
-  .tentang-flex img,
+  .tentang-flex img {
+    width: 180px;
+    max-width: 180px;
+    margin: 0 60px 0 0;
+    flex-shrink: 0;
+  }
+
   .tentang-flex .tentang-text {
     flex: 1;
   }
@@ -417,6 +516,10 @@ img {
 
 /*===desktop===*/
 @media (min-width: 992px) {
+
+  html {
+    scroll-padding-top: 5.4rem;
+  }
 
   .header {
     padding: 1.2rem 3rem;
@@ -450,11 +553,16 @@ img {
     padding: 3rem 4rem;
   }
 
+  .tentang-flex {
+    max-width: 54%;
+    margin: auto;
+  }
+
   .kontak {
     padding: 3rem 4rem;
   }
 
   .kontak-grid {
-    gap: 4rem;
+    gap: 2.5rem;
   }
 }
