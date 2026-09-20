@@ -56,6 +56,15 @@ $(document).ready(function() {
         }
 
         perbaruiTerpopuler();
+
+        // munculin toast notification
+        const namaMenu = $tombol.closest('.card').find('h3').text();
+
+        if ($tombol.hasClass('liked')) {
+            tampilkanToast('Kamu menyukai ' + namaMenu, 'toast-suka');
+        } else {
+            tampilkanToast('Suka untuk ' + namaMenu + ' dibatalkan', 'toast-batal');
+        }
     });
 
     function perbaruiTerpopuler() {
@@ -205,6 +214,29 @@ function pasangAnimasi(selector, jedaAntarElemen) {
     elemenList.forEach(function(elemen) {
         observer.observe(elemen);
     });
+}
+
+// 8. TOAST NOTIFICATION
+// popup kecil di pojok kiri bawah. muncul lalu ilang sendiri
+const $toastWadah = $('#toast-container');
+
+function tampilkanToast(pesan, tipe) {
+    // batasin maksimum 3 toast notif yg muncul
+    if ($toastWadah.children().length >= 3) {
+        $toastWadah.children().first().remove();
+    }
+
+    const $toast = $('<div class="toast"></div>')
+        .addClass(tipe)
+        .text(pesan)
+        .hide()
+        .appendTo($toastWadah);
+
+    $toast.slideDown(250)
+            .delay(2500)
+            .fadeOut(300, function() {
+                $(this).remove();
+            });
 }
 
 // Tentang Kami
