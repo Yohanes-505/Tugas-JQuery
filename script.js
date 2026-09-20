@@ -25,3 +25,21 @@ $(document).ready(function() {
     });
 
 });
+
+// judul, paragraf, dan tombol muncul bergantian saat halaman dibuka
+
+    let kurangiAnimasi = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!kurangiAnimasi) {
+        $('.hero-content').children().each(function(index) {
+            $(this)
+                .css({ opacity: 0, position: 'relative', top: '20px' }) // mulai transparan & agak turun
+                .delay(index * 250)                                      // tiap elemen jeda 250ms
+                .animate({ opacity: 1, top: 0 }, 700);                   // lalu naik & muncul
+        });
+    }
+
+ // setelah link di navbar diklik, checkbox hamburger diuncheck
+    $('.nav-list a').click(function() {
+        $('#nav-toggle').prop('checked', false);
+    });
