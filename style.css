@@ -4,6 +4,7 @@
   box-sizing: border-box;
 }
 
+/*agar saat discroll ada transisi dan juga padding agar menyesuaikan berhenti scrollnya dimana*/
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 4.4rem;
@@ -73,6 +74,7 @@ img {
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
+/* ketika toogle hamburger diklik maka akan muncul navbarnya (khusus untuk mobile) */
 .nav-toggle:checked ~ .hamburger span:nth-child(1) {
   transform: translateY(8.5px) rotate(45deg);
 }
@@ -125,6 +127,7 @@ img {
   border-bottom-color: #d9a066;
 }
 
+/*ketika navbar telah diklik maka muncul garis border bawah */
 body:has(#hero:target) .nav-list a[href="#hero"],
 body:has(#menu:target) .nav-list a[href="#menu"],
 body:has(#tentang:target) .nav-list a[href="#tentang"],
@@ -271,15 +274,10 @@ body:has(#kontak:target) .nav-list a[href="#kontak"] {
   margin: 0 auto;
 }
 
-.faq-toggle {
-  display: none;
-}
-
 .faq-item {
   background: #fff;
   border-radius: 8px;
   margin-bottom: 0.8rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
   overflow: hidden;
 }
 
@@ -287,35 +285,59 @@ body:has(#kontak:target) .nav-list a[href="#kontak"] {
   cursor: pointer;
   font-weight: bold;
   color: #4b2e2e;
-  padding: 0.9rem 1rem;
+  padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+/* untuk jquery */
+.faq-question.active {
+  background-color: #f5e6d3;
 }
 
 .faq-icon {
   transition: transform 0.3s ease;
+  font-size: 1.2rem;
+}
+
+.faq-question.active .faq-icon {
+  transform: rotate(45deg); 
 }
 
 .faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
+  display: none; 
   padding: 0 1rem;
 }
 
 .faq-answer p {
   font-size: 0.9rem;
   color: #555;
-  padding-bottom: 0.9rem;
+  padding-bottom: 1rem;
 }
 
-.faq-toggle:checked ~ .faq-answer {
-  max-height: 200px;
+.btn-like {
+  background-color: transparent;
+  border: 1px solid #d9a066;
+  color: #d9a066;
+  padding: 0.5rem;
+  margin: 0.5rem 1rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
 }
 
-.faq-toggle:checked ~ .faq-question .faq-icon {
-  transform: rotate(45deg);
+.btn-like:hover {
+  background-color: #f5e6d3;
+}
+
+/* untuk jquery nanti */
+.btn-like.liked {
+  background-color: #d9a066;
+  color: #fff;
 }
 
 /*==kontak==*/
@@ -351,7 +373,7 @@ body:has(#kontak:target) .nav-list a[href="#kontak"] {
   font-size: 0.95rem;
 }
 
-/*==sosial media kontak==*/
+/*==sosial media==*/
 .social-links {
   display: flex;
   align-items: center;
