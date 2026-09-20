@@ -1,164 +1,9 @@
-$(document).ready(function() {    
-    // ketika class faq-question diklik maka
-    $('.faq-question').click(function() {
-        // answer = isi dari class faq-answer yang berada di faq-question yang diklik
-        let answer = $(this).next('.faq-answer');
-        answer.slideToggle(100);
-        $(this).toggleClass('active');
+$(document).ready(function() {
 
-        // hanya salah satu faq yang terbuka
-        $('.faq-answer').not(answer).slideUp(100);
-        $('.faq-question').not(this).removeClass('active');
-    });
-  
-    // untuk DOM fitur like
-    $('.btn-like').click(function() {
-        $(this).toggleClass('liked');
-        let counterSpan = $(this).find('.like-count');
-        let currentCount = parseInt(counterSpan.text());
-
-        if ($(this).hasClass('liked')) {
-            counterSpan.text(currentCount + 1);
-        } else {
-            counterSpan.text(currentCount - 1);
-        }
-        perbaruiTerpopuler();
-    });
-
-    // penanda card like terbanyak
-    function perbaruiTerpopuler() {
-        let likeTertinggi = 0;
-
-        //nilai like paling tinggi
-        $('.like-count').each(function() {
-            let jumlah = parseInt($(this).text());
-            if(jumlah > likeTertinggi) {
-                likeTertinggi = jumlah;
-            }
-        });
-        //bersihin badge
-        $('.card').removeClass('terpopuler');
-
-         if (likeTertinggi > 0) {
-        $('.like-count').each(function() {
-            if (parseInt($(this).text()) === likeTertinggi) {
-                $(this).closest('.card').addClass('terpopuler');
-            }
-        });
-    }
-
-    }
-
-    let tombolAtas = $('#back-to-top');
-
-    // muncul kalau sudah scroll lebih dari 300px, hilang kalau di atas
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > 300) {
-            tombolAtas.fadeIn(300);
-        } else {
-            tombolAtas.fadeOut(300);
-        }
-    });
-
-    // saat diklik, halaman naik ke atas dengan halus
-    tombolAtas.click(function() {
-        $('html').css('scroll-behavior', 'auto');
-        $('html, body').animate({ scrollTop: 0 }, 600, function() {
-            $('html').css('scroll-behavior', '');
-        });
-    });
-
-        // ===== VALIDASI FORM KONTAK =====
-
-    // fungsi bantu: tampilkan pesan error di bawah input
-    function tampilkanError(input, pesan) {
-        input.addClass('input-error');
-        input.next('.error-msg').text(pesan);
-    }
-
-    // fungsi bantu: hapus pesan error
-    function hapusError(input) {
-        input.removeClass('input-error');
-        input.next('.error-msg').text('');
-    }
-
-    // error langsung hilang begitu pengguna mulai mengetik ulang
-    $('#form-kontak input, #form-kontak textarea').on('input', function() {
-        hapusError($(this));
-    });
-
-        $('#form-kontak').submit(function(event) {
-        event.preventDefault(); // cegah halaman reload
-
-        let nama  = $('#nama');
-        let email = $('#email');
-        let pesan = $('#pesan');
-
-        // .trim() membuang spasi di awal/akhir, supaya isian "   " tetap dianggap kosong
-        let isiNama  = nama.val().trim();
-        let isiEmail = email.val().trim();
-        let isiPesan = pesan.val().trim();
-
-        // pola email sederhana: teks@teks.teks
-        let polaEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        let valid = true;
-
-        // cek nama
-        if (isiNama === '') {
-            tampilkanError(nama, 'Nama wajib diisi.');
-            valid = false;
-        } else if (isiNama.length < 3) {
-            tampilkanError(nama, 'Nama minimal 3 huruf.');
-            valid = false;
-        } else {
-            hapusError(nama);
-        }
-
-        // cek email
-        if (isiEmail === '') {
-            tampilkanError(email, 'Email wajib diisi.');
-            valid = false;
-        } else if (!polaEmail.test(isiEmail)) {
-            tampilkanError(email, 'Format email belum benar, contoh: nama@email.com');
-            valid = false;
-        } else {
-            hapusError(email);
-        }
-
-        // cek pesan
-        if (isiPesan === '') {
-            tampilkanError(pesan, 'Pesan wajib diisi.');
-            valid = false;
-        } else if (isiPesan.length < 10) {
-            tampilkanError(pesan, 'Pesan minimal 10 karakter.');
-            valid = false;
-        } else {
-            hapusError(pesan);
-        }
-
-        // kalau ada yang salah, arahkan kursor ke kolom error pertama lalu berhenti
-        if (!valid) {
-            $('.input-error').first().focus();
-            return;
-        }
-
-        // kalau semua benar: tampilkan pesan sukses
-        $('#form-status')
-            .text('Terima kasih, ' + isiNama + '! Pesan kamu sudah terkirim.')
-            .slideDown(300)
-            .delay(4000)
-            .slideUp(300);
-
-        // kosongkan form
-        this.reset();
-    });
-
-});
-
-// judul, paragraf, dan tombol muncul bergantian saat halaman dibuka
-
-    let kurangiAnimasi = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // 1. ANIMASI MASUK HERO
+    // Judul, paragraf, dan tombol muncul bergantian saat halaman dibuka
+    // kalau pengguna mengaktifkan "kurangi animasi" di perangkatnya, animasi dilewati
+    const kurangiAnimasi = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (!kurangiAnimasi) {
         $('.hero-content').children().each(function(index) {
@@ -169,21 +14,185 @@ $(document).ready(function() {
         });
     }
 
- // setelah link di navbar diklik, checkbox hamburger diuncheck
+    // 2. MENU MOBILE
+    // Setelah link di navbar diklik, menu hamburger ditutup kembali
+    const $navToggle = $('#nav-toggle');
+
     $('.nav-list a').click(function() {
-        $('#nav-toggle').prop('checked', false);
+        $navToggle.prop('checked', false);
     });
 
-// animasi reveal ke sekumpulan elemen, muncul satu persatu
+    // 3. ACCORDION FAQ
+    // Jawaban muncul/tertutup saat pertanyaan diklik,
+    // dan hanya satu jawaban yang terbuka dalam satu waktu
+    const $pertanyaan = $('.faq-question');
+    const $jawaban    = $('.faq-answer');
+
+    $pertanyaan.click(function() {
+        const $diklik     = $(this);
+        const $jawabanIni = $diklik.next('.faq-answer');
+
+        $jawaban.not($jawabanIni).slideUp(300);
+        $pertanyaan.not($diklik).removeClass('active');
+
+        $jawabanIni.slideToggle(300);
+        $diklik.toggleClass('active');
+    });
+
+    // 4. TOMBOL SUKA + PENANDA MENU TERPOPULER
+    // Klik pertama menambah 1, klik kedua membatalkan (mengurangi 1)
+    // Card dengan like terbanyak otomatis dapat badge "Terpopuler"
+    $('.btn-like').click(function() {
+        const $tombol  = $(this);
+        const $counter = $tombol.find('.like-count');
+        const jumlah   = parseInt($counter.text());
+
+        $tombol.toggleClass('liked');
+
+        if ($tombol.hasClass('liked')) {
+            $counter.text(jumlah + 1);
+        } else {
+            $counter.text(jumlah - 1);
+        }
+
+        perbaruiTerpopuler();
+    });
+
+    function perbaruiTerpopuler() {
+        let likeTertinggi = 0;
+
+        // cari nilai like tertinggi di antara semua card
+        $('.like-count').each(function() {
+            let jumlah = parseInt($(this).text());
+            if (jumlah > likeTertinggi) {
+                likeTertinggi = jumlah;
+            }
+        });
+
+        // bersihkan badge dari semua card dulu
+        $('.card').removeClass('terpopuler');
+
+        // kasih badge ke card dengan like tertinggi
+        if (likeTertinggi > 0) {
+            $('.like-count').each(function() {
+                if (parseInt($(this).text()) === likeTertinggi) {
+                    $(this).closest('.card').addClass('terpopuler');
+                }
+            });
+        }
+    }
+
+    // 5. TOMBOL KEMBALI KE ATAS
+    // Muncul setelah halaman di-scroll, klik untuk kembali ke atas
+    const $tombolAtas = $('#back-to-top');
+
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 300) {
+            $tombolAtas.fadeIn(300);
+        } else {
+            $tombolAtas.fadeOut(300);
+        }
+    });
+
+    $tombolAtas.click(function() {
+        // scroll-behavior: smooth di CSS membuat animate() patah-patah,
+        // jadi dimatikan sementara selama animasi lalu dikembalikan
+        $('html').css('scroll-behavior', 'auto');
+        $('html, body').animate({ scrollTop: 0 }, 600, function() {
+            $('html').css('scroll-behavior', '');
+        });
+    });
+
+    // 6. VALIDASI FORM KONTAK
+    const $form       = $('#form-kontak');
+    const $nama       = $('#nama');
+    const $email      = $('#email');
+    const $pesan      = $('#pesan');
+    const $formStatus = $('#form-status');
+
+    const polaEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    function tampilkanError($input, pesan) {
+        $input.addClass('input-error');
+        $input.next('.error-msg').text(pesan);
+    }
+
+    function hapusError($input) {
+        $input.removeClass('input-error');
+        $input.next('.error-msg').text('');
+    }
+
+    $form.find('input, textarea').on('input', function() {
+        hapusError($(this));
+    });
+
+    $form.submit(function(event) {
+        event.preventDefault();
+
+        const isiNama  = $nama.val().trim();
+        const isiEmail = $email.val().trim();
+        const isiPesan = $pesan.val().trim();
+
+        let valid = true;
+
+        if (isiNama === '') {
+            tampilkanError($nama, 'Nama wajib diisi.');
+            valid = false;
+        } else if (isiNama.length < 3) {
+            tampilkanError($nama, 'Nama minimal 3 huruf.');
+            valid = false;
+        } else {
+            hapusError($nama);
+        }
+
+        if (isiEmail === '') {
+            tampilkanError($email, 'Email wajib diisi.');
+            valid = false;
+        } else if (!polaEmail.test(isiEmail)) {
+            tampilkanError($email, 'Format email belum benar, contoh: nama@email.com');
+            valid = false;
+        } else {
+            hapusError($email);
+        }
+
+        if (isiPesan === '') {
+            tampilkanError($pesan, 'Pesan wajib diisi.');
+            valid = false;
+        } else if (isiPesan.length < 10) {
+            tampilkanError($pesan, 'Pesan minimal 10 karakter.');
+            valid = false;
+        } else {
+            hapusError($pesan);
+        }
+
+        if (!valid) {
+            $form.find('.input-error').first().focus();
+            return;
+        }
+
+        $formStatus
+            .text('Terima kasih, ' + isiNama + '! Pesan kamu sudah terkirim.')
+            .slideDown(300)
+            .delay(4000)
+            .slideUp(300);
+
+        this.reset();
+    });
+
+});
+
+// 7. ANIMASI REVEAL SAAT SCROLL
+// dipasang di luar $(document).ready karena pakai IntersectionObserver,
+// bukan event jQuery tapi tetap aman karena DOM sudah siap saat script ini jalan
+
+// pasang animasi reveal ke sekumpulan elemen, muncul satu-satu (staggered)
 function pasangAnimasi(selector, jedaAntarElemen) {
     const elemenList = document.querySelectorAll(selector);
 
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
             if (entry.isIntersecting) {
-                // cari urutan elemen di antara semua elemen sejenis
                 let index = Array.from(elemenList).indexOf(entry.target);
-                // jeda sesuai urutan, biar satu-satu
                 setTimeout(function() {
                     entry.target.classList.add('tampil');
                 }, index * jedaAntarElemen);
@@ -201,8 +210,8 @@ function pasangAnimasi(selector, jedaAntarElemen) {
 // Tentang Kami
 pasangAnimasi('.tentang-flex', 0);
 
-// card menu
+// card menu (muncul satu-satu, jeda 150ms)
 pasangAnimasi('.card', 150);
 
-// FAQ
+// FAQ (muncul satu-satu, jeda 120ms)
 pasangAnimasi('.faq-item', 120);
