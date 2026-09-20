@@ -24,6 +24,25 @@ $(document).ready(function() {
         }
     });
 
+    let tombolAtas = $('#back-to-top');
+
+    // muncul kalau sudah scroll lebih dari 300px, hilang kalau di atas
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 300) {
+            tombolAtas.fadeIn(300);
+        } else {
+            tombolAtas.fadeOut(300);
+        }
+    });
+
+    // saat diklik, halaman naik ke atas dengan halus
+    tombolAtas.click(function() {
+        $('html').css('scroll-behavior', 'auto');
+        $('html, body').animate({ scrollTop: 0 }, 600, function() {
+            $('html').css('scroll-behavior', '');
+        });
+    });
+
 });
 
 // judul, paragraf, dan tombol muncul bergantian saat halaman dibuka
