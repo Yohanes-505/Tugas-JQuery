@@ -239,6 +239,37 @@ function tampilkanToast(pesan, tipe) {
             });
 }
 
+// 9. STATUS BUKA DAN TUTUP
+// cek jam sekarang dan jadiin status buka ato tutup
+const $statusBuka = $('#status-buka');
+const JAM_BUKA    = 8;
+const JAM_TUTUP   = 21;
+
+function formatJam(jam) {
+    return String(jam).padStart(2, '0') + '.00';
+}
+
+function perbaruiStatusBuka() {
+    // paksa zona jam jadi kayak di jkt
+    const jamSekarang = parseInt(new Date().toLocaleString('en-GB', {
+        timeZone: 'Asia/Jakarta',
+        hour: '2-digit',
+        hourCycle: 'h23'
+    }), 10);
+
+    const sedangBuka = jamSekarang >= JAM_BUKA && jamSekarang < JAM_TUTUP;
+
+    $statusBuka
+        .toggleClass('buka', sedangBuka)
+        .toggleClass('tutup', !sedangBuka)
+        .text(sedangBuka
+            ? 'Buka sekarang · sampai ' + formatJam(JAM_TUTUP) + ' WIB'
+            : 'Tutup · buka lagi pukul ' + formatJam(JAM_BUKA) + ' WIB');
+}
+
+perbaruiStatusBuka();
+setInterval(perbaruiStatusBuka, 60000);
+
 // Tentang Kami
 pasangAnimasi('.tentang-flex', 0);
 
